@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Course {
-  id          String   @id @default(cuid()) @map("_id")
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   students    Int
   cover       String
   title       String

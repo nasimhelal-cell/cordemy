@@ -1,11 +1,28 @@
-import React from "react";
+import { getAllCourses } from "@/prisma/courses";
+import CoursePage from "./courses";
 
-const index = () => {
+const HomePage = ({ courses }) => {
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="wrapper">
+      <CoursePage courses={courses} />
     </div>
   );
 };
 
-export default index;
+export default HomePage;
+
+//server side codes
+export const getServerSideProps = async () => {
+  const courses = await getAllCourses();
+
+  const updatedCourses = courses.map((course) => ({
+    ...course,
+    updatedAt: course.updatedAt.toString(),
+    createdAt: course.createdAt.toString(),
+  }));
+  return {
+    props: {
+      courses: updatedCourses,
+    },
+  };
+};

@@ -27,11 +27,6 @@ const Navbar = () => {
       console.log(error.message);
     }
   };
-  useEffect(() => {
-    if (!session) {
-      route.replace("/users/login");
-    }
-  }, [session, route]);
 
   //navigate to profile page functionality
   const goToProfile = () => {

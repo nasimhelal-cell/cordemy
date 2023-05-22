@@ -9,7 +9,7 @@ const CourseDetailPage = ({ course }) => {
         style={{ backgroundImage: `url(${course.cover})` }}
         className="w-full h-[40rem] bg-no-repeat bg-center bg-cover"
       ></div>
-      <div className="mt-10 grid lg:grid-cols-2 bg-rose-400 gap-3 lg:gap-10 space-y-2 lg:space-y-0">
+      <div className="mt-10 grid lg:grid-cols-2 gap-3 lg:gap-10 space-y-2 lg:space-y-0">
         <div className="space-y-2 text-lg">
           <h2 className="text-3xl">{course.title}</h2>
           <p>
@@ -37,7 +37,11 @@ const CourseDetailPage = ({ course }) => {
             <span className="font-semibold ">Price: </span>
             {currencyConverter(course.price)}
           </p>
-          <Button href="/checkout" placeholder="Enroll Now" size="full" />
+          <Button
+            href={`/checkout/${course.id}`}
+            placeholder="Enroll Now"
+            size="full"
+          />
         </div>
       </div>
     </div>
@@ -55,7 +59,7 @@ export const getServerSideProps = async ({ query }) => {
     updatedAt: course.updatedAt.toString(),
     createdAt: course.createdAt.toString(),
   };
-  console.log(updatedCourse);
+
   return {
     props: {
       course: updatedCourse,

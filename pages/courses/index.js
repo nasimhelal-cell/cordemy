@@ -7,7 +7,7 @@ const p =
   "Learn new skills, grow your knowledge, and advance your career with our wide selection of online courses. Whether you are a beginner or an expert, we have something for everyone.";
 const CoursePage = ({ courses }) => {
   return (
-    <div className="wrapper py-3">
+    <div className="wrapper py-20">
       <SectionHeader span={span} h2={h2} p={p} />
       <div className="mt-10 flex flex-wrap gap-10">
         {courses.map((course) => (

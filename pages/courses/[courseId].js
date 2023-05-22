@@ -7,9 +7,10 @@ import { useRouter } from "next/router";
 const CourseDetailPage = ({ course }) => {
   const { data: session } = useSession();
   const route = useRouter();
+
   const handleEnroll = () => {
     if (session) {
-      route.push(`checkout/${course.id}`);
+      route.push(`/checkout/${course.id}`);
     } else {
       route.push(`/users/login?destination=/checkout/${course.id}`);
     }
@@ -66,6 +67,7 @@ export default CourseDetailPage;
 
 export const getServerSideProps = async ({ query }) => {
   const course = await getCourse(query.courseId);
+
   const updatedCourse = {
     ...course,
     updatedAt: course.updatedAt.toString(),
